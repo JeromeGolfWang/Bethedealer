@@ -90,7 +90,7 @@ function displayHands() {
 
 function createCardImage(card) {
     let cardImage = document.createElement('img');
-    let fileName = `${card.value}_of_${card.suit.toLowerCase()}`;
+    let fileName = `${card.value.toUpperCase()}_of_${card.suit.toLowerCase()}`;
     cardImage.src = `Card Images/${fileName}.png`;
     cardImage.alt = `${card.value} of ${card.suit}`;
     cardImage.className = 'card';
@@ -98,7 +98,7 @@ function createCardImage(card) {
 }
 
 function playerAction() {
-    if (playerPoints <= 16) {
+    if (shouldPlayerHit()) {
         playerHand.push(drawCard());
         updatePoints();
         displayHands();
@@ -173,6 +173,48 @@ function displayWager() {
 
 function showHint() {
     addMessage('Hint: Dealer should hit on soft 17.');
+}
+
+function shouldPlayerHit() {
+    // Basic strategy logic based on player's hand and dealer's visible card
+    const dealerVisibleCard = dealerHand[0].value;
+    const isSoftHand = playerHand.some(card => card.value === 'A');
+    
+    if (isSoftHand) {
+        // Soft hand logic
+        switch (playerPoints) {
+            case 13:
+            case 14:
+            case 15:
+            case 16:
+                return dealerVisibleCard >= 7 || dealerVisibleCard <= 3;
+            case 17:
+                return dealerVisibleCard >= 7 || dealerVisibleCard <= 2;
+            case 18:
+                return dealerVisibleCard >= 9 || dealerVisibleCard <= 3;
+            default:
+                return playerPoints < 18;
+        }
+    } else {
+        // Hard hand logic
+        switch (playerPoints) {
+            case 9:
+                return dealerVisibleCard >= 3 && dealerVisibleCard <= 6;
+            case 10:
+                return dealerVisibleCard >= 2 && dealerVisibleCard <= 9;
+            case 11:
+                return true;
+            case 12:
+                return dealerVisibleCard >= 4 && dealerVisibleCard <= 6;
+            case 13:
+            case 14:
+            case 15:
+            case 16:
+                return dealerVisibleCard >= 2 && dealerVisibleCard <= 6;
+            default:
+                return playerPoints < 17;
+        }
+    }
 }
 
 // Event listeners for controls
