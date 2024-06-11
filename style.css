@@ -10,6 +10,7 @@ body {
     background-position: center;  /* Center the background image */
     background-repeat: no-repeat;
     height: 100vh;  /* Ensure the body takes the full height of the viewport */
+    overflow: hidden;  /* Prevent scrollbars */
 }
 
 #ticker {
@@ -23,6 +24,7 @@ body {
     left: 0;
     display: flex;
     justify-content: space-around;
+    z-index: 10;  /* Ensure the ticker is always on top */
 }
 
 #scoreboard p {
@@ -34,10 +36,9 @@ body {
 #game-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    margin-top: 80px;  /* Add margin to avoid overlapping with ticker */
-    height: calc(100vh - 80px);  /* Adjust height considering the ticker */
+    height: 100%;
 }
 
 #player-area, #dealer-area {
@@ -54,7 +55,7 @@ body {
 }
 
 .card {
-    width: 80px;  /* Adjust the width as needed */
+    width: 100px;  /* Make the cards larger */
     height: auto;  /* Maintain aspect ratio */
     margin: 5px;  /* Add some space between cards */
 }
