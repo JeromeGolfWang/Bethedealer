@@ -6,7 +6,7 @@ body {
     margin: 0;
     padding: 20px;
     background-image: url('Game Images/Table.jpeg');  /* Correct path to your image */
-    background-size: 900px auto;  /* Ensure the image is smaller */
+    background-size: 950px auto;  /* Ensure the image is smaller */
     background-position: center;  /* Center the background image */
     background-repeat: no-repeat;
     height: 100vh;  /* Ensure the body takes the full height of the viewport */
