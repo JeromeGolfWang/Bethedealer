@@ -6,7 +6,7 @@ body {
     margin: 0;
     padding: 20px;
     background-image: url('Game Images/table.jpeg');  /* Correct path to your image */
-    background-size: 950px auto;  /* Ensure the image covers the entire background */
+    background-size: cover;  /* Ensure the image covers the entire background */
     background-position: center;  /* Center the background image */
     background-repeat: no-repeat;
     height: 100vh;  /* Ensure the body takes the full height of the viewport */
@@ -38,7 +38,8 @@ body {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    height: 100%;
+    height: calc(100vh - 200px);  /* Adjust height considering the ticker and control panel */
+    overflow: hidden;  /* Prevent scrollbars */
 }
 
 #player-area, #dealer-area {
@@ -55,7 +56,7 @@ body {
 }
 
 .card {
-    width: 100px;  /* Make the cards larger */
+    width: 80px;  /* Adjust the width to balance visibility */
     height: auto;  /* Maintain aspect ratio */
     margin: 5px;  /* Add some space between cards */
 }
@@ -70,7 +71,13 @@ body {
 }
 
 #controls {
+    position: fixed;
+    bottom: 10px;  /* Position controls at the bottom */
+    width: 100%;  /* Ensure controls take full width */
+    display: flex;
+    justify-content: center;
     margin-top: 20px;
+    z-index: 10;  /* Ensure controls are always on top */
 }
 
 #controls button {
@@ -79,14 +86,14 @@ body {
 }
 
 #chip-counting {
-    position: absolute;
+    position: fixed;
     right: 20px;  /* Position it to the right of the dealer's hand */
-    top: 50%;  /* Center vertically next to the dealer's hand */
-    transform: translateY(-50%);  /* Center alignment adjustment */
+    bottom: 20px;  /* Adjust vertical position */
     margin-top: 20px;
     background-color: rgba(0, 0, 0, 0.7);  /* Semi-transparent background */
     padding: 10px;
     border-radius: 5px;
+    z-index: 10;  /* Ensure chip counting is always on top */
 }
 
 #chip-counting button {
@@ -95,7 +102,7 @@ body {
 }
 
 #status {
-    margin-top: 20px;
+    margin-top: 10px;
     font-size: 24px;
     font-weight: bold;
 }
