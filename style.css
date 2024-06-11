@@ -5,18 +5,19 @@ body {
     text-align: center;
     margin: 0;
     padding: 20px;
-    background-image: url('Game Images/Table.jpeg');  /* Correct path to your image */
-    background-size: cover;  /* Ensure the image covers the entire background */
+    background-image: url('Game Images/table.jpeg');  /* Correct path to your image */
+    background-size: 900px auto;  /* Ensure the image is smaller */
     background-position: center;  /* Center the background image */
     background-repeat: no-repeat;
+    height: 100vh;  /* Ensure the body takes the full height of the viewport */
 }
 
 #game-container {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    height: 100vh;  /* Make the container take full height */
+    height: 80vh;  /* Make the container take 80% of the height */
 }
 
 #player-area, #dealer-area {
@@ -24,7 +25,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 10px 0;
 }
 
 .hand {
@@ -34,7 +34,7 @@ body {
 }
 
 .card {
-    width: 60px;  /* Adjust the width as needed */
+    width: 80px;  /* Adjust the width as needed */
     height: auto;  /* Maintain aspect ratio */
     margin: 5px;  /* Add some space between cards */
 }
@@ -45,6 +45,7 @@ body {
     border: 1px solid white;
     border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.7);  /* Semi-transparent background for better readability */
+    width: 80%;  /* Increase the width of the text broadcast boxes */
 }
 
 #controls {
