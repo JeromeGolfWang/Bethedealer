@@ -6,7 +6,7 @@ body {
     margin: 0;
     padding: 20px;
     background-image: url('Game Images/table.jpeg');  /* Correct path to your image */
-    background-size: 900px auto;  /* Ensure the image is smaller */
+    background-size: 1000px auto;  /* Ensure the image is smaller */
     background-position: center;  /* Center the background image */
     background-repeat: no-repeat;
     height: 100vh;  /* Ensure the body takes the full height of the viewport */
@@ -45,7 +45,7 @@ body {
     border: 1px solid white;
     border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.7);  /* Semi-transparent background for better readability */
-    width: 80%;  /* Increase the width of the text broadcast boxes */
+    width: 25%;  /* Increase the width of the text broadcast boxes */
 }
 
 #controls {
