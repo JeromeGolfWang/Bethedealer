@@ -1,4 +1,3 @@
-// Sample game.js
 let deck, playerHand, dealerHand, playerWager;
 let playerWins = 0, dealerWins = 0, bank = 10000, score = 0, startTime;
 
@@ -94,9 +93,9 @@ function displayWager() {
 
 // Function to reset action displays
 function resetActionDisplays() {
-    document.getElementById('player-action-display').innerText = '';
-    document.getElementById('dealer-action-display').innerText = '';
-    document.getElementById('dealer-hint-display').innerText = '';
+    document.getElementById('player-action-text').innerText = '';
+    document.getElementById('dealer-hint-text').innerText = '';
+    document.getElementById('dealer-action-text').innerText = '';
 }
 
 // Event listeners
