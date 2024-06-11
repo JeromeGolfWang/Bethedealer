@@ -56,7 +56,7 @@ body {
 }
 
 .card {
-    width: 110px;  /* Adjust the width to balance visibility */
+    width: 90px;  /* Adjust the width to balance visibility */
     height: auto;  /* Maintain aspect ratio */
     margin: 5px;  /* Add some space between cards */
 }
