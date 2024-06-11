@@ -5,11 +5,30 @@ body {
     text-align: center;
     margin: 0;
     padding: 20px;
-    background-image: url('Game Images/Table.jpeg');  /* Correct path to your image */
-    background-size: 950px auto;  /* Ensure the image is smaller */
+    background-image: url('Game Images/table.jpeg');  /* Correct path to your image */
+    background-size: 1000px auto;  /* Ensure the image is smaller */
     background-position: center;  /* Center the background image */
     background-repeat: no-repeat;
     height: 100vh;  /* Ensure the body takes the full height of the viewport */
+}
+
+#ticker {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);  /* Semi-transparent background */
+    color: white;
+    padding: 10px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+#scoreboard p {
+    margin: 5px 10px;
+    display: inline;
+    font-size: 18px;
 }
 
 #game-container {
@@ -17,7 +36,8 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 80vh;  /* Make the container take 80% of the height */
+    margin-top: 80px;  /* Add margin to avoid overlapping with ticker */
+    height: calc(100vh - 80px);  /* Adjust height considering the ticker */
 }
 
 #player-area, #dealer-area {
@@ -34,7 +54,7 @@ body {
 }
 
 .card {
-    width: 120px;  /* Adjust the width as needed */
+    width: 80px;  /* Adjust the width as needed */
     height: auto;  /* Maintain aspect ratio */
     margin: 5px;  /* Add some space between cards */
 }
@@ -45,7 +65,7 @@ body {
     border: 1px solid white;
     border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.7);  /* Semi-transparent background for better readability */
-    width: 25%;  /* Increase the width of the text broadcast boxes */
+    width: 60%;  /* Increase the width of the text broadcast boxes */
 }
 
 #controls {
@@ -57,10 +77,11 @@ body {
     padding: 10px;
 }
 
-#scoreboard {
+#chip-counting {
     margin-top: 20px;
 }
 
-#wager {
-    margin-top: 20px;
+#chip-counting button {
+    margin: 5px;
+    padding: 10px;
 }

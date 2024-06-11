@@ -6,11 +6,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="ticker">
+        <div id="scoreboard">
+            <p>Player Wins: <span id="player-wins">0</span></p>
+            <p>Dealer Wins: <span id="dealer-wins">0</span></p>
+            <p>Bank: <span id="dealer-bank">10000</span></p>
+            <p>Score: <span id="score">0</span></p>
+        </div>
+    </div>
+
     <div id="game-container">
         <div id="player-area">
             <h2>Player's Hand</h2>
             <div id="player-hand" class="hand"></div>
             <div id="player-action-display" class="action-display"></div>
+            <p>Player's Wager: <span id="player-wager">0</span></p>
         </div>
 
         <div id="dealer-area">
@@ -26,18 +36,6 @@
         <button id="dealer-hit-button" disabled>Hit</button>
         <button id="dealer-stay-button" disabled>Stay</button>
         <button id="dealer-hint-button" disabled>Hint</button>
-    </div>
-
-    <div id="scoreboard">
-        <p>Scoreboard</p>
-        <p>Player Wins: <span id="player-wins">0</span></p>
-        <p>Dealer Wins: <span id="dealer-wins">0</span></p>
-        <p>Bank: <span id="dealer-bank">10000</span></p>
-        <p>Score: <span id="score">0</span></p>
-    </div>
-
-    <div id="wager">
-        <p>Player's Wager: <span id="player-wager">0</span></p>
     </div>
 
     <div id="chip-counting">
