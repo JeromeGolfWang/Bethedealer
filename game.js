@@ -8,10 +8,9 @@ let playerWins = 0;
 let dealerWins = 0;
 let dealerBank = 10000;
 let playerWager = 0;
-let canSplit = false;
-let canDoubleDown = true;
-let insuranceOffered = false;
-let insuranceBet = 0;
+let score = 0;
+let startTime;
+let endTime;
 
 function createDeck() {
     const suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
@@ -47,14 +46,7 @@ function startGame() {
     document.getElementById('dealer-stay-button').disabled = true;
     document.getElementById('dealer-hint-button').disabled = true;
     resetActionDisplays();
-    canSplit = (playerHand[0].value === playerHand[1].value);
-    canDoubleDown = true;
-    insuranceOffered = false;
-    insuranceBet = 0;
-
-    if (dealerHand[0].value === 'A') {
-        offerInsurance();
-    }
+    startTime = new Date().getTime();
 }
 
 function drawCard() {
@@ -119,6 +111,7 @@ function playerAction() {
             setPlayerActionDisplay("Hit - Player busts! Dealer wins.");
             document.getElementById('status').innerText = 'Player busts! Dealer wins.';
             dealerWins++;
+            score -= 10;  // Penalty for busting
             updateScoreboard();
             document.getElementById('player-action-button').disabled = true;
             document.getElementById('dealer-hit-button').disabled = true;
@@ -146,6 +139,7 @@ function dealerAction(action) {
             document.getElementById('status').innerText = 'Dealer busts! Player wins.';
             playerWins++;
             dealerBank -= playerWager;
+            score += 10;  // Reward for winning
             updateScoreboard();
             document.getElementById('dealer-hit-button').disabled = true;
             document.getElementById('dealer-stay-button').disabled = true;
@@ -158,14 +152,19 @@ function dealerAction(action) {
 }
 
 function determineWinner() {
+    endTime = new Date().getTime();
+    let timeTaken = (endTime - startTime) / 1000;  // Time in seconds
     if (dealerPoints > 21 || playerPoints > dealerPoints) {
         document.getElementById('status').innerText = 'Player wins!';
         playerWins++;
         dealerBank -= playerWager;
+        score += 10;  // Reward for winning
+        score += Math.max(0, 10 - timeTaken);  // Reward for speed
     } else if (dealerPoints > playerPoints) {
         document.getElementById('status').innerText = 'Dealer wins!';
         dealerWins++;
         dealerBank += playerWager;
+        score -= 5;  // Penalty for losing
     } else {
         document.getElementById('status').innerText = 'Push!';
     }
@@ -185,6 +184,7 @@ function updateScoreboard() {
     document.getElementById('player-wins').innerText = playerWins;
     document.getElementById('dealer-wins').innerText = dealerWins;
     document.getElementById('dealer-bank').innerText = dealerBank;
+    document.getElementById('score').innerText = score;
 }
 
 function displayWager() {
