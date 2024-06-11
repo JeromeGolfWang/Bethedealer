@@ -34,7 +34,7 @@ body {
 }
 
 .card {
-    width: 90px;  /* Adjust the width as needed */
+    width: 120px;  /* Adjust the width as needed */
     height: auto;  /* Maintain aspect ratio */
     margin: 5px;  /* Add some space between cards */
 }
