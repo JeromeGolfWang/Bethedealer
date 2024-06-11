@@ -9,15 +9,14 @@ body {
     background-size: cover;  /* Ensure the image covers the entire background */
     background-position: center;  /* Center the background image */
     background-repeat: no-repeat;
-    height: 100vh;  /* Ensure the body takes the full height of the viewport */
 }
 
 #game-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    height: 80vh;  /* Make the container take 80% of the height */
+    justify-content: center;
+    height: 100vh;  /* Make the container take full height */
 }
 
 #player-area, #dealer-area {
@@ -25,6 +24,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 10px 0;
 }
 
 .hand {
