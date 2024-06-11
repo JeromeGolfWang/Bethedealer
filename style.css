@@ -5,36 +5,26 @@ body {
     text-align: center;
     margin: 0;
     padding: 20px;
-    background-image: url('Game Images/table.jpeg');  /* Correct path to your image */
+    background-image: url('your-image-path.png');  /* Set the correct path to your image */
     background-size: cover;  /* Ensure the image covers the entire background */
-    background-position: center;  /* Center the background image */
-    background-repeat: no-repeat;
 }
 
 #game-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;  /* Make the container take full height */
-}
-
-#player-area, #dealer-area {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 10px 0;
+    justify-content: space-around;
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.5);  /* Semi-transparent background to make text readable */
+    padding: 20px;
+    border-radius: 10px;
 }
 
 .hand {
-    display: flex;
-    justify-content: center;
+    display: inline-block;
     padding: 10px;
 }
 
 .card {
-    width: 60px;  /* Adjust the width as needed */
+    width: 80px;  /* Adjust the width as needed */
     height: auto;  /* Maintain aspect ratio */
     margin: 5px;  /* Add some space between cards */
 }
