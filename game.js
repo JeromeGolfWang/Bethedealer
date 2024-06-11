@@ -179,9 +179,9 @@ function showHint() {
 function shouldPlayerHit() {
     const dealerVisibleCard = dealerHand[0].value;
     const dealerCardValue = cardValue(dealerVisibleCard);
-    const playerHasSoftHand = playerHand.some(card => card.value === 'A');
+    const playerHasSoftHand = playerHand.some(card => card.value === 'A' && cardIsEleven(card));
     const playerHardPoints = playerHand.reduce((total, card) => {
-        if (card.value === 'A') {
+        if (card.value === 'A' && cardIsEleven(card)) {
             return total + 1;
         } else if (['K', 'Q', 'J'].includes(card.value)) {
             return total + 10;
@@ -222,6 +222,10 @@ function cardValue(card) {
     } else {
         return parseInt(card);
     }
+}
+
+function cardIsEleven(card) {
+    return card.value === 'A' && playerHand.reduce((total, c) => total + cardValue(c), 0) <= 21;
 }
 
 // Event listeners for controls
