@@ -43,6 +43,7 @@ function startGame() {
     document.getElementById('dealer-hit-button').disabled = true;
     document.getElementById('dealer-stay-button').disabled = true;
     document.getElementById('dealer-hint-button').disabled = true;
+    resetActionDisplays();
 }
 
 function drawCard() {
@@ -103,6 +104,7 @@ function playerAction() {
         playerHand.push(drawCard());
         updatePoints();
         displayHands();
+        setPlayerActionDisplay("Hit");
         if (playerPoints > 21) {
             document.getElementById('status').innerText = 'Player busts! Dealer wins.';
             dealerWins++;
@@ -110,7 +112,7 @@ function playerAction() {
             document.getElementById('player-action-button').disabled = true;
         }
     } else {
-        addMessage('Player: Stay');
+        setPlayerActionDisplay("Stay");
         document.getElementById('player-action-button').disabled = true;
         document.getElementById('dealer-hit-button').disabled = false;
         document.getElementById('dealer-stay-button').disabled = false;
@@ -173,7 +175,8 @@ function displayWager() {
 }
 
 function showHint() {
-    addMessage('Hint: Dealer should hit on soft 17.');
+    const dealerHint = dealerShouldHit() ? "Hit: Dealer should hit to reach at least 17." : "Stay: Dealer has a strong hand.";
+    setDealerHintDisplay(dealerHint);
 }
 
 function shouldPlayerHit() {
@@ -214,6 +217,10 @@ function shouldPlayerHit() {
     return false;
 }
 
+function dealerShouldHit() {
+    return dealerPoints < 17 || (dealerPoints === 17 && dealerHand.some(card => card.value === 'A' && cardIsEleven(card)));
+}
+
 function cardValue(card) {
     if (card === 'A') {
         return 11;
@@ -226,6 +233,19 @@ function cardValue(card) {
 
 function cardIsEleven(card) {
     return card.value === 'A' && playerHand.reduce((total, c) => total + cardValue(c), 0) <= 21;
+}
+
+function setPlayerActionDisplay(action) {
+    document.getElementById('player-action-display').innerText = `Player: ${action}`;
+}
+
+function setDealerHintDisplay(hint) {
+    document.getElementById('dealer-hint-display').innerText = `Dealer: ${hint}`;
+}
+
+function resetActionDisplays() {
+    document.getElementById('player-action-display').innerText = '';
+    document.getElementById('dealer-hint-display').innerText = '';
 }
 
 // Event listeners for controls

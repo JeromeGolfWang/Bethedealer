@@ -2,53 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blackjack Dealer Training</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="game-container">
-        <h1>Blackjack Dealer Training</h1>
-        <p>Dealer must hit on soft 17.</p>
-        <div id="table">
-            <div id="player-hand-container">
-                <h2>Player's Hand</h2>
-                <div id="player-hand"></div>
-            </div>
-            <div id="dealer-hand-container">
-                <h2>Dealer's Hand</h2>
-                <div id="dealer-hand"></div>
-            </div>
+        <div id="player-area">
+            <h2>Player's Hand</h2>
+            <div id="player-hand" class="hand"></div>
+            <div id="player-action-display" class="action-display"></div>
         </div>
-        <div id="controls">
-            <button id="start-game-button">Start Game</button>
-            <button id="player-action-button" disabled>Player Action</button>
-            <button id="dealer-hit-button" disabled>Hit</button>
-            <button id="dealer-stay-button" disabled>Stay</button>
-            <button id="dealer-hint-button" disabled>Hint</button>
+
+        <div id="dealer-area">
+            <h2>Dealer's Hand</h2>
+            <div id="dealer-hand" class="hand"></div>
+            <div id="dealer-hint-display" class="action-display"></div>
         </div>
-        <div id="scoreboard">
-            <h2>Scoreboard</h2>
-            <p>Player Wins: <span id="player-wins">0</span></p>
-            <p>Dealer Wins: <span id="dealer-wins">0</span></p>
-            <p>Bank: $<span id="dealer-bank">10000</span></p>
-        </div>
-        <div id="chat-box">
-            <h2>Chat Box</h2>
-            <div id="messages"></div>
-        </div>
-        <div id="wager">
-            <h2>Player's Wager: $<span id="player-wager"></span></h2>
-        </div>
-        <div id="chip-controls">
-            <h2>Dealer's Payout</h2>
-            <button class="chip-button" data-value="25">$25</button>
-            <button class="chip-button" data-value="50">$50</button>
-            <button class="chip-button" data-value="100">$100</button>
-            <button class="chip-button" data-value="500">$500</button>
-        </div>
-        <div id="status"></div>
     </div>
+
+    <div id="controls">
+        <button id="start-game-button">Start Game</button>
+        <button id="player-action-button">Player Action</button>
+        <button id="dealer-hit-button" disabled>Hit</button>
+        <button id="dealer-stay-button" disabled>Stay</button>
+        <button id="dealer-hint-button" disabled>Hint</button>
+    </div>
+
+    <div id="scoreboard">
+        <p>Scoreboard</p>
+        <p>Player Wins: <span id="player-wins">0</span></p>
+        <p>Dealer Wins: <span id="dealer-wins">0</span></p>
+        <p>Bank: <span id="dealer-bank">10000</span></p>
+    </div>
+
+    <div id="wager">
+        <p>Player's Wager: <span id="player-wager">0</span></p>
+    </div>
+
     <script src="game.js"></script>
 </body>
 </html>
