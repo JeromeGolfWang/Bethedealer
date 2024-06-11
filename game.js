@@ -1,4 +1,5 @@
 // Card deck and game variables
+console.log("Game logic updated");  // Simple change to ensure recognition
 let deck = [];
 let playerHand = [];
 let dealerHand = [];
@@ -176,10 +177,10 @@ function showHint() {
 }
 
 function shouldPlayerHit() {
-    // Basic strategy logic based on player's hand and dealer's visible card
     const dealerVisibleCard = dealerHand[0].value;
-    const isSoftHand = playerHand.some(card => card.value === 'A');
-    const hardHandPoints = playerHand.reduce((total, card) => {
+    const dealerCardValue = cardValue(dealerVisibleCard);
+    const playerHasSoftHand = playerHand.some(card => card.value === 'A');
+    const playerHardPoints = playerHand.reduce((total, card) => {
         if (card.value === 'A') {
             return total + 1;
         } else if (['K', 'Q', 'J'].includes(card.value)) {
@@ -189,24 +190,38 @@ function shouldPlayerHit() {
         }
     }, 0);
 
-    if (isSoftHand) {
+    if (playerPoints <= 11) {
+        return true; // Always hit if 11 or less
+    }
+
+    if (playerHasSoftHand) {
         // Soft hand logic
         if (playerPoints >= 19) return false;
-        if (playerPoints === 18 && dealerVisibleCard >= 9) return true;
-        if (playerPoints === 18 && dealerVisibleCard <= 3) return true;
-        if (playerPoints === 17 && dealerVisibleCard >= 7) return true;
-        if (playerPoints === 17 && dealerVisibleCard <= 2) return true;
+        if (playerPoints === 18 && dealerCardValue >= 9) return true;
+        if (playerPoints === 18 && dealerCardValue <= 3) return true;
+        if (playerPoints === 17 && dealerCardValue >= 7) return true;
+        if (playerPoints === 17 && dealerCardValue <= 2) return true;
         if (playerPoints <= 16) return true;
     } else {
         // Hard hand logic
-        if (hardHandPoints >= 17) return false;
-        if (hardHandPoints >= 13 && hardHandPoints <= 16 && dealerVisibleCard <= 6) return false;
-        if (hardHandPoints >= 12 && hardHandPoints <= 16 && dealerVisibleCard >= 7) return true;
-        if (hardHandPoints >= 10 && dealerVisibleCard <= 9) return true;
-        if (hardHandPoints === 9 && dealerVisibleCard <= 6 && dealerVisibleCard >= 3) return true;
-        if (hardHandPoints <= 8) return true;
+        if (playerPoints >= 17) return false;
+        if (playerPoints >= 13 && playerPoints <= 16 && dealerCardValue <= 6) return false;
+        if (playerPoints >= 12 && playerPoints <= 16 && dealerCardValue >= 7) return true;
+        if (playerPoints >= 10 && dealerCardValue <= 9) return true;
+        if (playerPoints === 9 && dealerCardValue <= 6 && dealerCardValue >= 3) return true;
+        if (playerPoints <= 8) return true;
     }
     return false;
+}
+
+function cardValue(card) {
+    if (card === 'A') {
+        return 11;
+    } else if (['K', 'Q', 'J'].includes(card)) {
+        return 10;
+    } else {
+        return parseInt(card);
+    }
 }
 
 // Event listeners for controls
