@@ -1,5 +1,3 @@
-// game.js
-
 // Card deck and game variables
 let deck = [];
 let playerHand = [];
@@ -81,11 +79,22 @@ function displayHands() {
     playerHandDiv.innerHTML = '';
     dealerHandDiv.innerHTML = '';
     for (let card of playerHand) {
-        playerHandDiv.innerHTML += `${card.value} of ${card.suit}<br>`;
+        const cardImage = createCardImage(card);
+        playerHandDiv.appendChild(cardImage);
     }
     for (let card of dealerHand) {
-        dealerHandDiv.innerHTML += `${card.value} of ${card.suit}<br>`;
+        const cardImage = createCardImage(card);
+        dealerHandDiv.appendChild(cardImage);
     }
+}
+
+function createCardImage(card) {
+    let cardImage = document.createElement('img');
+    let fileName = `${card.value}_of_${card.suit.toLowerCase()}`;
+    cardImage.src = `Card Images/${fileName}.png`;
+    cardImage.alt = `${card.value} of ${card.suit}`;
+    cardImage.className = 'card';
+    return cardImage;
 }
 
 function playerAction() {

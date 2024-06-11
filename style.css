@@ -31,6 +31,12 @@ body {
     margin-bottom: 10px;
 }
 
+#player-hand img.card, #dealer-hand img.card {
+    width: 80px;  /* Adjust the width as needed */
+    height: auto;  /* Maintain aspect ratio */
+    margin: 5px;  /* Add some space between cards */
+}
+
 #controls button, .chip-button {
     padding: 10px 20px;
     margin: 5px;
