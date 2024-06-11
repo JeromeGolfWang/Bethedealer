@@ -191,40 +191,22 @@ function shouldPlayerHit() {
 
     if (isSoftHand) {
         // Soft hand logic
-        switch (playerPoints) {
-            case 13:
-            case 14:
-                return dealerVisibleCard >= 7 || dealerVisibleCard <= 3;
-            case 15:
-            case 16:
-                return dealerVisibleCard >= 7 || dealerVisibleCard <= 3;
-            case 17:
-                return dealerVisibleCard >= 7 || dealerVisibleCard <= 2;
-            case 18:
-                return dealerVisibleCard >= 9 || dealerVisibleCard === 'A' || dealerVisibleCard <= 3;
-            default:
-                return playerPoints < 18;
-        }
+        if (playerPoints >= 19) return false;
+        if (playerPoints === 18 && dealerVisibleCard >= 9) return true;
+        if (playerPoints === 18 && dealerVisibleCard <= 3) return true;
+        if (playerPoints === 17 && dealerVisibleCard >= 7) return true;
+        if (playerPoints === 17 && dealerVisibleCard <= 2) return true;
+        if (playerPoints <= 16) return true;
     } else {
         // Hard hand logic
-        switch (hardHandPoints) {
-            case 9:
-                return dealerVisibleCard < 3 || dealerVisibleCard > 6;
-            case 10:
-                return dealerVisibleCard < 2 || dealerVisibleCard > 9;
-            case 11:
-                return dealerVisibleCard === 'A';
-            case 12:
-                return dealerVisibleCard < 4 || dealerVisibleCard > 6;
-            case 13:
-            case 14:
-            case 15:
-            case 16:
-                return dealerVisibleCard > 6 || dealerVisibleCard === 'A';
-            default:
-                return playerPoints < 17;
-        }
+        if (hardHandPoints >= 17) return false;
+        if (hardHandPoints >= 13 && hardHandPoints <= 16 && dealerVisibleCard <= 6) return false;
+        if (hardHandPoints >= 12 && hardHandPoints <= 16 && dealerVisibleCard >= 7) return true;
+        if (hardHandPoints >= 10 && dealerVisibleCard <= 9) return true;
+        if (hardHandPoints === 9 && dealerVisibleCard <= 6 && dealerVisibleCard >= 3) return true;
+        if (hardHandPoints <= 8) return true;
     }
+    return false;
 }
 
 // Event listeners for controls
