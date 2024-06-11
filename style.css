@@ -5,7 +5,7 @@ body {
     text-align: center;
     margin: 0;
     padding: 20px;
-    background-image: url('Game Images/table.jpeg');  /* Correct path to your image */
+    background-image: url('Game Images/Table.jpeg');  /* Correct path to your image */
     background-size: cover;  /* Ensure the image covers the entire background */
     background-position: center;  /* Center the background image */
     background-repeat: no-repeat;
