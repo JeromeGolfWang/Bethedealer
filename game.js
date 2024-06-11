@@ -100,4 +100,97 @@ function resetActionDisplays() {
 
 // Event listeners
 document.getElementById('start-game-button').addEventListener('click', startGame);
-// Add other event listeners as needed
+
+document.getElementById('player-action-button').addEventListener('click', () => {
+    let action = determinePlayerAction();
+    document.getElementById('player-action-text').innerText = action;
+    if (action === 'Hit') {
+        playerHand.push(drawCard());
+        displayHands();
+        updatePoints();
+        if (calculateHandValue(playerHand) > 21) {
+            endGame('Dealer Wins');
+        }
+    } else {
+        document.getElementById('dealer-hit-button').disabled = false;
+        document.getElementById('dealer-stay-button').disabled = false;
+        document.getElementById('player-action-button').disabled = true;
+    }
+});
+
+// Function to determine player action based on basic strategy
+function determinePlayerAction() {
+    let playerValue = calculateHandValue(playerHand);
+    let dealerValue = calculateHandValue(dealerHand, true);
+    if (playerValue < 17) {
+        return 'Hit';
+    } else {
+        return 'Stay';
+    }
+}
+
+// Function to calculate hand value
+function calculateHandValue(hand, dealer = false) {
+    let value = 0;
+    let aces = 0;
+    for (let card of hand) {
+        if (card.value === 'A') {
+            aces++;
+            value += 11;
+        } else if (['K', 'Q', 'J'].includes(card.value)) {
+            value += 10;
+        } else {
+            value += parseInt(card.value);
+        }
+    }
+    while (value > 21 && aces > 0) {
+        value -= 10;
+        aces--;
+    }
+    return value;
+}
+
+// Function to end the game
+function endGame(result) {
+    if (result === 'Player Wins') {
+        playerWins++;
+        bank -= playerWager;
+        score += playerWager;
+    } else {
+        dealerWins++;
+        bank += playerWager;
+        score -= playerWager;
+    }
+    updateScoreboard();
+    document.getElementById('status').innerText = result;
+    document.getElementById('player-action-button').disabled = true;
+    document.getElementById('dealer-hit-button').disabled = true;
+    document.getElementById('dealer-stay-button').disabled = true;
+    document.getElementById('dealer-hint-button').disabled = true;
+}
+
+// Event listeners for dealer actions
+document.getElementById('dealer-hit-button').addEventListener('click', () => {
+    dealerHand.push(drawCard());
+    displayHands();
+    updatePoints();
+    if (calculateHandValue(dealerHand) > 21) {
+        endGame('Player Wins');
+    }
+});
+
+document.getElementById('dealer-stay-button').addEventListener('click', () => {
+    let playerValue = calculateHandValue(playerHand);
+    let dealerValue = calculateHandValue(dealerHand);
+    if (dealerValue > playerValue) {
+        endGame('Dealer Wins');
+    } else {
+        endGame('Player Wins');
+    }
+});
+
+document.getElementById('dealer-hint-button').addEventListener('click', () => {
+    let dealerValue = calculateHandValue(dealerHand);
+    let hint = dealerValue < 17 ? 'Hit' : 'Stay';
+    document.getElementById('dealer-hint-text').innerText = hint;
+});
