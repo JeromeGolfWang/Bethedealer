@@ -1,3 +1,35 @@
+// Sample game.js
+let deck, playerHand, dealerHand, playerWager;
+let playerWins = 0, dealerWins = 0, bank = 10000, score = 0, startTime;
+
+// Function to create a deck of cards
+function createDeck() {
+    const suits = ['hearts', 'diamonds', 'clubs', 'spades'];
+    const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+    deck = [];
+    for (let suit of suits) {
+        for (let value of values) {
+            deck.push({ suit, value });
+        }
+    }
+    deck = shuffle(deck);
+}
+
+// Function to shuffle the deck
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+// Function to draw a card
+function drawCard() {
+    return deck.pop();
+}
+
+// Function to start the game
 function startGame() {
     createDeck();
     playerHand = [drawCard(), drawCard()];
@@ -16,6 +48,7 @@ function startGame() {
     startTime = new Date().getTime();
 }
 
+// Function to display the hands
 function displayHands() {
     const playerHandDiv = document.getElementById('player-hand');
     const dealerHandDiv = document.getElementById('dealer-hand');
@@ -31,11 +64,41 @@ function displayHands() {
     }
 }
 
+// Function to create a card image element
 function createCardImage(card) {
     let cardImage = document.createElement('img');
-    let fileName = `${card.value.toUpperCase()}_of_${card.suit.toLowerCase()}`;
-    cardImage.src = `Card Images/${fileName}.png`;
+    let fileName = `${card.value}_of_${card.suit}.png`;
+    cardImage.src = `Card Images/${fileName}`;
     cardImage.alt = `${card.value} of ${card.suit}`;
     cardImage.className = 'card';
     return cardImage;
 }
+
+// Function to update points
+function updatePoints() {
+    // Implementation of points calculation
+}
+
+// Function to update the scoreboard
+function updateScoreboard() {
+    document.getElementById('player-wins').innerText = playerWins;
+    document.getElementById('dealer-wins').innerText = dealerWins;
+    document.getElementById('dealer-bank').innerText = bank;
+    document.getElementById('score').innerText = score;
+}
+
+// Function to display the wager
+function displayWager() {
+    document.getElementById('player-wager').innerText = playerWager;
+}
+
+// Function to reset action displays
+function resetActionDisplays() {
+    document.getElementById('player-action-display').innerText = '';
+    document.getElementById('dealer-action-display').innerText = '';
+    document.getElementById('dealer-hint-display').innerText = '';
+}
+
+// Event listeners
+document.getElementById('start-game-button').addEventListener('click', startGame);
+// Add other event listeners as needed
