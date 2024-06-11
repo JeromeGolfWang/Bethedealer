@@ -179,38 +179,48 @@ function shouldPlayerHit() {
     // Basic strategy logic based on player's hand and dealer's visible card
     const dealerVisibleCard = dealerHand[0].value;
     const isSoftHand = playerHand.some(card => card.value === 'A');
-    
+    const hardHandPoints = playerHand.reduce((total, card) => {
+        if (card.value === 'A') {
+            return total + 1;
+        } else if (['K', 'Q', 'J'].includes(card.value)) {
+            return total + 10;
+        } else {
+            return total + parseInt(card.value);
+        }
+    }, 0);
+
     if (isSoftHand) {
         // Soft hand logic
         switch (playerPoints) {
             case 13:
             case 14:
+                return dealerVisibleCard >= 7 || dealerVisibleCard <= 3;
             case 15:
             case 16:
                 return dealerVisibleCard >= 7 || dealerVisibleCard <= 3;
             case 17:
                 return dealerVisibleCard >= 7 || dealerVisibleCard <= 2;
             case 18:
-                return dealerVisibleCard >= 9 || dealerVisibleCard <= 3;
+                return dealerVisibleCard >= 9 || dealerVisibleCard === 'A' || dealerVisibleCard <= 3;
             default:
                 return playerPoints < 18;
         }
     } else {
         // Hard hand logic
-        switch (playerPoints) {
+        switch (hardHandPoints) {
             case 9:
-                return dealerVisibleCard >= 3 && dealerVisibleCard <= 6;
+                return dealerVisibleCard < 3 || dealerVisibleCard > 6;
             case 10:
-                return dealerVisibleCard >= 2 && dealerVisibleCard <= 9;
+                return dealerVisibleCard < 2 || dealerVisibleCard > 9;
             case 11:
-                return true;
+                return dealerVisibleCard === 'A';
             case 12:
-                return dealerVisibleCard >= 4 && dealerVisibleCard <= 6;
+                return dealerVisibleCard < 4 || dealerVisibleCard > 6;
             case 13:
             case 14:
             case 15:
             case 16:
-                return dealerVisibleCard >= 2 && dealerVisibleCard <= 6;
+                return dealerVisibleCard > 6 || dealerVisibleCard === 'A';
             default:
                 return playerPoints < 17;
         }
