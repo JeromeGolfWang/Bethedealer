@@ -144,7 +144,12 @@ function dealerAction(action) {
             document.getElementById('dealer-hit-button').disabled = true;
             document.getElementById('dealer-stay-button').disabled = true;
             document.getElementById('dealer-hint-button').disabled = true;
-            setTimeout(startGame, 2000);
+            setTimeout(() => {
+                announceWinner('Player');
+                startGame();
+            }, 2000);
+        } else {
+            setDealerActionDisplay("Hit");
         }
     } else if (action === 'stay') {
         determineWinner();
@@ -160,11 +165,13 @@ function determineWinner() {
         dealerBank -= playerWager;
         score += 10;  // Reward for winning
         score += Math.max(0, 10 - timeTaken);  // Reward for speed
+        announceWinner('Player');
     } else if (dealerPoints > playerPoints) {
         document.getElementById('status').innerText = 'Dealer wins!';
         dealerWins++;
         dealerBank += playerWager;
         score -= 5;  // Penalty for losing
+        announceWinner('Dealer');
     } else {
         document.getElementById('status').innerText = 'Push!';
     }
@@ -260,9 +267,26 @@ function setDealerHintDisplay(hint) {
     document.getElementById('dealer-hint-display').innerText = `Dealer: ${hint}`;
 }
 
+function setDealerActionDisplay(action) {
+    document.getElementById('dealer-action-display').innerText = `Dealer: ${action}`;
+}
+
 function resetActionDisplays() {
     document.getElementById('player-action-display').innerText = '';
     document.getElementById('dealer-hint-display').innerText = '';
+    document.getElementById('dealer-action-display').innerText = '';
+}
+
+function announceWinner(winner) {
+    if (winner === 'Player') {
+        document.getElementById('status').innerText = 'Player wins! Dealer to count out winnings.';
+        dealerBank -= playerWager;
+        // Additional logic for the dealer to count out winnings can be added here
+    } else if (winner === 'Dealer') {
+        document.getElementById('status').innerText = 'Dealer wins!';
+        dealerBank += playerWager;
+    }
+    updateScoreboard();
 }
 
 // Event listeners for controls
