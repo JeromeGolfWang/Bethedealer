@@ -6,11 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultElement = document.getElementById('result');
     const playerWagerElement = document.getElementById('player-wager');
     const startGameButton = document.getElementById('start-game');
-    const playerActionButton = document.getElementById('player-action-button');
+    const playerActionButton = document.getElementById('player-action-btn');
     const hitButton = document.getElementById('hit');
     const stayButton = document.getElementById('stay');
-    const hintButton = document.getElementById('hint-button');
-    const chipButtons = document.querySelectorAll('.chip');
+    const hintButton = document.getElementById('hint-btn');
+    const chipButtons = document.querySelectorAll('#count-chips button');
     const scoreboard = {
         playerWins: 0,
         dealerWins: 0,
@@ -25,23 +25,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function displayCard(handElement, card) {
         const img = document.createElement('img');
-        img.src = `Game Images/${card.value}_of_${card.suit}.png`;
+        img.src = `Card Images/${card.value}_of_${card.suit}.png`;
         img.classList.add('card');
         handElement.appendChild(img);
     }
 
     function updateScoreboard() {
-        document.querySelector('#scoreboard span:nth-child(1)').textContent = `Player Wins: ${scoreboard.playerWins}`;
-        document.querySelector('#scoreboard span:nth-child(2)').textContent = `Dealer Wins: ${scoreboard.dealerWins}`;
-        document.querySelector('#scoreboard span:nth-child(3)').textContent = `Bank: ${scoreboard.bank}`;
-        document.querySelector('#scoreboard span:nth-child(4)').textContent = `Score: ${scoreboard.score}`;
+        document.querySelector('#scoreboard span:nth-child(2)').textContent = `Player Wins: ${scoreboard.playerWins}`;
+        document.querySelector('#scoreboard span:nth-child(4)').textContent = `Dealer Wins: ${scoreboard.dealerWins}`;
+        document.querySelector('#scoreboard span:nth-child(6)').textContent = `Bank: ${scoreboard.bank}`;
+        document.querySelector('#scoreboard span:nth-child(8)').textContent = `Score: ${scoreboard.score}`;
     }
 
     function resetHands() {
         playerHand = [];
         dealerHand = [];
-        playerHandElement.innerHTML = '<h2>Player\'s Hand</h2>';
-        dealerHandElement.innerHTML = '<h2>Dealer\'s Hand</h2>';
+        playerHandElement.innerHTML = '';
+        dealerHandElement.innerHTML = '';
         playerActionElement.innerHTML = 'Player Action:';
         hintElement.innerHTML = 'Hint:';
         resultElement.innerHTML = 'Result:';
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     chipButtons.forEach(button => {
         button.addEventListener('click', () => {
             if (!gameActive) return;
-            playerWager = parseInt(button.value, 10);
+            playerWager = parseInt(button.textContent, 10);
             playerWagerElement.innerHTML = `Player's Wager: ${playerWager}`;
         });
     });
