@@ -4,7 +4,7 @@ body {
     color: white;
     text-align: center;
     margin: 0;
-    padding: 20px;
+    padding: 0;
     background-image: url('Game Images/Table.jpeg');
     background-size: cover;
     background-position: center;
@@ -36,10 +36,10 @@ body {
 #game-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    height: calc(100vh - 200px);
-    overflow: hidden;
+    height: calc(100vh - 100px);
+    padding-top: 60px;
 }
 
 #player-area, #dealer-area {
@@ -52,7 +52,7 @@ body {
 .hand {
     display: flex;
     justify-content: center;
-    padding: 10px;
+    padding: 5px;
 }
 
 .card {
@@ -62,12 +62,22 @@ body {
 }
 
 .action-display {
-    margin-top: 10px;
-    padding: 10px;
+    margin-top: 5px;
+    padding: 5px;
     border: 1px solid white;
     border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.7);
-    width: 60%;
+    width: 80%;
+    text-align: left;
+}
+
+#player-action-display {
+    margin-top: 10px;
+}
+
+#dealer-hint-display, #dealer-action-display {
+    width: auto;
+    text-align: left;
 }
 
 #controls {
@@ -76,7 +86,7 @@ body {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 10px;
     z-index: 10;
 }
 
