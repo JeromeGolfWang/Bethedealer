@@ -5,7 +5,7 @@ body {
     text-align: center;
     margin: 0;
     padding: 0;
-    background-image: url('Game Images/Table.jpeg');
+    background-image: url('Game Images/BJ_Table.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -62,22 +62,17 @@ body {
 }
 
 .action-display {
-    margin-top: 5px;
-    padding: 5px;
-    border: 1px solid white;
-    border-radius: 5px;
-    background-color: rgba(0, 0, 0, 0.7);
-    width: 200px;
+    width: 300px;  /* Adjust width as needed */
     text-align: left;
 }
 
 #player-action-display {
     margin-top: 10px;
+    width: 300px;  /* Adjust width as needed */
 }
 
 #dealer-hint-display, #dealer-action-display {
-    width: 200px;
-    text-align: left;
+    width: 300px;  /* Adjust width as needed */
 }
 
 #controls {
