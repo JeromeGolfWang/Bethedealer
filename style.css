@@ -7,7 +7,7 @@
     position: relative;
     width: var(--background-width);
     height: var(--background-height);
-    background-image: url('Game Images/Table.jpeg');
+    background-image: url('Game Images/BJ_Table.jpeg');
     background-size: cover;
     background-position: center;
     display: flex;
