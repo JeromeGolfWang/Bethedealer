@@ -18,10 +18,19 @@ document.addEventListener('DOMContentLoaded', () => {
         score: 0
     };
 
+    const suits = ['clubs', 'diamonds', 'hearts', 'spades'];
+    const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+
     let playerHand = [];
     let dealerHand = [];
     let playerWager = 0;
     let gameActive = false;
+
+    function getRandomCard() {
+        const value = values[Math.floor(Math.random() * values.length)];
+        const suit = suits[Math.floor(Math.random() * suits.length)];
+        return { value, suit };
+    }
 
     function displayCard(handElement, card) {
         const img = document.createElement('img');
@@ -49,10 +58,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function dealInitialCards() {
-        playerHand.push({ value: '2', suit: 'hearts' });
-        playerHand.push({ value: '7', suit: 'clubs' });
-        dealerHand.push({ value: '9', suit: 'clubs' });
-        dealerHand.push({ value: 'queen', suit: 'clubs' });
+        playerHand.push(getRandomCard());
+        playerHand.push(getRandomCard());
+        dealerHand.push(getRandomCard());
+        dealerHand.push(getRandomCard());
 
         playerHand.forEach(card => displayCard(playerHandElement, card));
         dealerHand.forEach(card => displayCard(dealerHandElement, card));
@@ -96,9 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
         let value = 0;
         let aceCount = 0;
         hand.forEach(card => {
-            if (card.value === 'jack' || card.value === 'queen' || card.value === 'king') {
+            if (['J', 'Q', 'K'].includes(card.value)) {
                 value += 10;
-            } else if (card.value === 'ace') {
+            } else if (card.value === 'A') {
                 aceCount++;
                 value += 11;
             } else {
