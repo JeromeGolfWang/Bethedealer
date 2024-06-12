@@ -10,15 +10,11 @@ body {
     width: 80%;
 }
 
-#game img {
-    display: block;
-    margin: 0 auto;
-}
-
 #player-hand, #dealer-hand {
     display: flex;
     justify-content: center;
     margin-top: 20px;
+    position: relative;
 }
 
 #player-hand img, #dealer-hand img {
@@ -83,6 +79,7 @@ body {
     border: 1px solid #000;
     background-color: #fff;
     margin: 10px auto;
+    text-align: left;
 }
 
 #player-action {
