@@ -40,8 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function resetHands() {
         playerHand = [];
         dealerHand = [];
-        playerHandElement.innerHTML = '<h2>Player\'s Hand</h2>';
-        dealerHandElement.innerHTML = '<h2>Dealer\'s Hand</h2>';
+        playerHandElement.innerHTML = '';
+        dealerHandElement.innerHTML = '';
         playerActionElement.innerHTML = 'Player Action:';
         hintElement.innerHTML = 'Hint:';
         resultElement.innerHTML = 'Result:';

@@ -1,107 +1,77 @@
 body {
     background-color: green;
+    color: white;
     font-family: Arial, sans-serif;
+    text-align: center;
 }
 
 #game {
-    text-align: center;
-    position: relative;
-    margin: 0 auto;
-    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: url('Game Images/BJ_Table.jpeg');
+    background-size: cover;
 }
 
-#player-hand, #dealer-hand {
+#scoreboard {
+    background-color: black;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+#table {
+    margin: 20px 0;
+}
+
+.hand {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
-    position: relative;
+    align-items: center;
+    margin: 10px 0;
 }
 
-#player-hand img, #dealer-hand img {
-    width: 80px;
+.card {
+    width: 100px;
     height: auto;
     margin: 0 5px;
 }
 
-#player-wager, #count-chips, #player-action, #hint, #result {
-    margin-top: 20px;
-    text-align: center;
+#player-action, #hint, #result, #player-wager {
+    background-color: black;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+#buttons {
+    margin: 20px 0;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:disabled {
+    background-color: grey;
+    cursor: not-allowed;
 }
 
 #count-chips {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: #000;
-    color: #fff;
+    background-color: black;
     padding: 10px;
     border-radius: 5px;
 }
 
-#buttons {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-#buttons button {
-    margin: 0 10px;
-    padding: 10px 20px;
-}
-
-#scoreboard {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: #000;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-    font-size: 1.2em;
-}
-
-#table {
-    width: 100%;
-    height: 100%;
-    background: url('Game Images/Table.jpeg') no-repeat center center;
-    background-size: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    opacity: 0.5;
-}
-
-#player-action, #hint, #result {
-    width: 200px;
-    padding: 10px;
-    border: 1px solid #000;
-    background-color: #fff;
-    margin: 10px auto;
-    text-align: left;
-}
-
-#player-action {
-    margin-top: 0;
-}
-
-@media (max-width: 768px) {
-    #game {
-        width: 100%;
-    }
-
-    #count-chips {
-        position: static;
-        transform: none;
-        margin: 10px auto;
-    }
-
-    #player-hand, #dealer-hand {
-        flex-direction: column;
-    }
-
-    #player-hand img, #dealer-hand img {
-        width: 60px;
-    }
+#count-chips div {
+    margin-bottom: 10px;
 }
