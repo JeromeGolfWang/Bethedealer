@@ -149,7 +149,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const dealerCard = dealerHand[0];
         const action = basicStrategy(playerHand, dealerCard);
         
-        if (action === 'hit') {
+        if (playerValue >= 21) {
+            playerActionElement.innerHTML = 'Player Action: Stay';
+            playerInfoElement.innerHTML = 'Player Info: Stay';
+            playerTurn = false;
+            hitButton.disabled = false;
+            stayButton.disabled = false;
+            dealerInfoElement.innerHTML = 'Dealer Info: Your Turn';
+        } else if (action === 'hit') {
             playerActionElement.innerHTML = 'Player Action: Hit';
             playerHand.push(getRandomCard());
             displayCard(playerHandElement, playerHand[playerHand.length - 1]);
