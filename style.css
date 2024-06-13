@@ -46,6 +46,9 @@ body {
 #player-info {
     top: 60px;
     left: 10px;
+    height: auto; /* Adjust height */
+    padding: 15px; /* Adjust padding */
+    width: 170px;
 }
 
 #how-to-play {
@@ -59,6 +62,9 @@ body {
 #dealer-info {
     top: 60px;
     right: 10px;
+    height: auto; /* Adjust height */
+    padding: 15px; /* Adjust padding */
+    width: 170px;
 }
 
 .hand {
