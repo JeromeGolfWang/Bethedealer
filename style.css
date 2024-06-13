@@ -1,18 +1,25 @@
 :root {
-    --background-width: 100%; /* Adjust as needed */
-    --background-height: auto; /* Adjust as needed */
+    --background-width: 100vw;
+    --background-height: 100vh;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
 }
 
 #game {
-    position: relative;
-    width: var(--background-width);
-    height: var(--background-height);
-    background-image: url('Game Images/BJ_Table.jpeg');
-    background-size: cover;
-    background-position: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    background-image: url('Game Images/BJ_Table.jpeg');
+    background-size: cover;
+    background-position: center;
+    width: var(--background-width);
+    height: var(--background-height);
+    position: relative;
 }
 
 #scoreboard {
@@ -21,19 +28,48 @@
     width: 100%;
     text-align: center;
     font-size: 18px;
+    background-color: rgba(0, 0, 0, 0.5);
     color: white;
+    padding: 5px 0;
+}
+
+.info-box {
+    position: absolute;
+    width: 150px;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#player-info {
+    top: 60px;
+    left: 10px;
+}
+
+#dealer-info {
+    top: 60px;
+    right: 10px;
 }
 
 .hand {
+    margin: 20px;
     display: flex;
     justify-content: center;
-    margin-top: 20px;
 }
 
-#player-wager, #player-action, #hint, #result {
-    margin: 10px;
-    font-size: 16px;
-    color: white;
+#player-hand,
+#dealer-hand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.card {
+    width: 80px;
+    height: 120px;
 }
 
 #buttons {
@@ -44,21 +80,35 @@
 
 #count-chips {
     position: absolute;
-    right: 10px;
-    bottom: 10px;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.7);
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
     color: white;
     padding: 10px;
     border-radius: 5px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 
-#count-chips button {
-    display: block;
-    margin: 5px 0;
+#count-chips > div {
+    margin-bottom: 5px;
 }
 
-.card {
-    width: 100px; /* Adjust card size as needed */
-    height: auto;
+#bank {
+    margin-bottom: 10px;
+}
+
+#player-wager,
+#hand-result,
+#hint,
+#result,
+#player-action {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    text-align: center;
 }

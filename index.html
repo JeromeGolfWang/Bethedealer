@@ -11,26 +11,29 @@
         <div id="scoreboard">
             Player Wins: <span id="player-wins">0</span> |
             Dealer Wins: <span id="dealer-wins">0</span> |
-            Bank: <span id="bank">10000</span> |
             Score: <span id="score">0</span>
         </div>
         <div id="table"></div>
+        <div id="player-info" class="info-box">Player info:</div>
+        <div id="dealer-info" class="info-box">Dealer info:</div>
         <div id="player-hand" class="hand">
             <div id="player-action">Player Action:</div>
         </div>
         <div id="player-wager">Player's Wager: 0</div>
+        <div id="hand-result">Hand Result:</div>
         <div id="dealer-hand" class="hand">
             <div id="hint">Hint:</div>
             <div id="result">Result:</div>
         </div>
         <div id="buttons">
-            <button id="start-game">Start Game</button>
+            <button id="start-game">New Hand</button>
             <button id="player-action-btn">Player Action</button>
             <button id="hit" disabled>Hit</button>
             <button id="stay" disabled>Stay</button>
             <button id="hint-btn">Hint</button>
         </div>
         <div id="count-chips">
+            <div>Bank: <span id="bank">10000</span></div>
             <div>Count Chips</div>
             <button id="chip-25">25</button>
             <button id="chip-50">50</button>
