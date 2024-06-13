@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const playerInfoElement = document.getElementById('player-info');
     const dealerInfoElement = document.getElementById('dealer-info');
     const bankElement = document.getElementById('bank');
+    const payoutAmountElement = document.getElementById('payout-amount');
+    const completePayoutButton = document.getElementById('complete-payout');
+    const payoutSection = document.getElementById('payout-section');
     const scoreboard = {
         playerWins: 0,
         dealerWins: 0,
@@ -27,6 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let playerWager = 0;
     let gameActive = false;
     let playerTurn = true;
+    let payoutAmount = 0;
+    let payoutInitiated = false;
 
     const cardValues = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
     const cardSuits = ['hearts', 'diamonds', 'clubs', 'spades'];
@@ -63,6 +68,10 @@ document.addEventListener('DOMContentLoaded', () => {
         playerWagerElement.innerHTML = 'Player\'s Wager: 0';
         playerInfoElement.innerHTML = 'Player Info:';
         dealerInfoElement.innerHTML = 'Dealer Info:';
+        payoutSection.style.display = 'none';
+        payoutAmount = 0;
+        payoutAmountElement.textContent = payoutAmount;
+        payoutInitiated = false;
     }
 
     function dealInitialCards() {
@@ -236,10 +245,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     chipButtons.forEach(button => {
         button.addEventListener('click', () => {
-            if (!gameActive) return;
-            playerWager = parseInt(button.textContent, 10);
-            playerWagerElement.innerHTML = `Player's Wager: ${playerWager}`;
+            if (gameActive) return;
+            payoutAmount += parseInt(button.textContent, 10);
+            payoutAmountElement.textContent = payoutAmount;
         });
+    });
+
+    completePayoutButton.addEventListener('click', () => {
+        if (!gameActive && payoutAmount > 0 && payoutInitiated) {
+            scoreboard.bank -= payoutAmount;
+            payoutAmount = 0;
+            payoutAmountElement.textContent = payoutAmount;
+            updateScoreboard();
+            payoutSection.style.display = 'none';
+        }
     });
 
     function dealerPlay() {
@@ -282,6 +301,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         updateScoreboard();
+
+        if ((playerValue > dealerValue || dealerValue > 21) && !payoutInitiated) {
+            payoutSection.style.display = 'block';
+            payoutInitiated = true;
+        }
     }
 
     function randomWager() {

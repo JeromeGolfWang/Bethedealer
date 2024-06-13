@@ -48,6 +48,14 @@ body {
     left: 10px;
 }
 
+#how-to-play {
+    top: 230px;
+    left: 10px;
+    height: auto; /* Adjust height */
+    padding: 15px; /* Adjust padding */
+    width: 220px;
+}
+
 #dealer-info {
     top: 60px;
     right: 10px;
@@ -90,6 +98,7 @@ body {
     display: flex;
     gap: 10px;
     align-items: center;
+    justify-content: center;
 }
 
 #count-chips > div {
@@ -111,4 +120,18 @@ body {
     border-radius: 5px;
     margin-top: 10px;
     text-align: center;
+}
+
+#payout-section {
+    position: absolute;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
